@@ -5,9 +5,9 @@ import { fetchLPInfo } from "../services/fetchLPInfo";
 const apiURL =
   "https://student.portal.chalmers.se/sv/chalmersstudier/Sidor/Lasarstider.aspx";
 
-const router = Router();
+const sqlRouter = Router();
 
-router.get("/", async (req: express.Request, res: express.Response) => {
+sqlRouter.get("/sql", async (req: express.Request, res: express.Response) => {
   const LPs = await fetchLPInfo(apiURL);
   const psqlString = convertToSQL(LPs);
   res.send(formatOutPut(psqlString));
@@ -28,4 +28,4 @@ const formatOutPut = (data: String[]) => {
   return data.join("<br/>");
 };
 
-export default router;
+export default sqlRouter;

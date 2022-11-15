@@ -1,12 +1,14 @@
 import express from "express";
-import router from "./routers/defaultRouter";
+import sqlRouter from "./routers/sqlRouter";
 import { config } from "dotenv";
+import rawRouter from "./routers/rawRouter";
 config();
 const app = express();
 const PORT: Number = 3000;
 
 // Handling GET / Request
-app.use("/", router);
+app.use("/", sqlRouter);
+app.use("/", rawRouter);
 // Server setup
 app.listen(PORT, () => {
   console.log(
